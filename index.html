@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#080b20">
+
+    <title>Galaxy Study Vault</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <script src="https://accounts.google.com/gsi/client"
+            async defer></script>
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <canvas id="stars"></canvas>
+    <div class="nebula nebula-one"></div>
+    <div class="nebula nebula-two"></div>
+
+    <!-- LOGIN -->
+    <section id="loginScreen" class="login-screen">
+
+        <div class="login-card">
+
+            <div class="galaxy-logo">✦</div>
+
+            <div class="brand">GALAXY STUDY VAULT</div>
+
+            <h1>Explore Your<br>
+                <span>Knowledge Universe</span>
+            </h1>
+
+            <p class="login-description">
+                Simpan, atur, dan temukan kembali seluruh
+                tugas kuliahmu dalam satu ruang digital.
+            </p>
+
+            <div class="planet-art">
+                <div class="planet"></div>
+                <div class="planet-ring"></div>
+                <span class="orbit-star star-a">✦</span>
+                <span class="orbit-star star-b">✧</span>
+                <span class="orbit-star star-c">✦</span>
+            </div>
+
+            <div id="googleButton" class="google-button-area">
+                <p class="muted">Memuat login Google...</p>
+            </div>
+
+            <p class="privacy-text">
+                <span>🔒</span>
+                File tersimpan pada Google Drive akunmu.
+                Bukan penyimpanan bersama.
+            </p>
+
+            <p id="loginError" class="error-message"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- APPLICATION -->
+    <main id="appScreen" class="app-screen hidden">
+
+        <header class="topbar">
+
+            <div class="brand-area">
+                <div class="small-logo">✦</div>
+
+                <div>
+                    <div class="brand">GALAXY VAULT</div>
+                    <small>YOUR PERSONAL UNIVERSE</small>
+                </div>
+            </div>
+
+            <div class="user-area">
+
+                <div class="storage-status">
+                    <span class="online-dot"></span>
+                    Google Drive
+                </div>
+
+                <img id="userPhoto"
+                     class="user-photo"
+                     src=""
+                     alt="Foto akun">
+
+                <div class="user-info">
+                    <strong id="userName">Pengguna</strong>
+                    <small id="userEmail"></small>
+                </div>
+
+                <button id="logoutBtn"
+                        class="icon-button"
+                        title="Keluar">
+                    ↪
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div class="layout">
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+
+                <div class="sidebar-heading">
+                    MY WORKSPACE
+                </div>
+
+                <button class="nav-item active"
+                        data-view="home">
+                    <span>⌂</span> Dashboard
+                </button>
+
+                <button class="nav-item"
+                        data-view="subjects">
+                    <span>▣</span> Mata Kuliah
+                </button>
+
+                <button class="nav-item"
+                        data-view="files">
+                    <span>▤</span> Semua File
+                </button>
+
+                <button class="nav-item"
+                        data-view="recent">
+                    <span>◷</span> Terbaru
+                </button>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="sidebar-heading">
+                    MY UNIVERSE
+                </div>
+
+                <div id="subjectNavigation"
+                     class="subject-navigation">
+
+                    <p class="muted small-text">
+                        Belum ada mata kuliah
+                    </p>
+
+                </div>
+
+                <button id="sidebarAddSubject"
+                        class="add-subject">
+                    + Tambah Mata Kuliah
+                </button>
+
+
+                <div class="sidebar-bottom">
+
+                    <div class="mini-space-card">
+                        <div>🪐</div>
+                        <strong>Study Space</strong>
+                        <small>Organize your future.</small>
+                    </div>
+
+                    <p>GALAXY STUDY VAULT © 2026</p>
+
+                </div>
+
+            </aside>
+
+
+            <!-- MAIN CONTENT -->
+            <section class="main-content">
+
+                <div class="welcome-section">
+
+                    <div>
+                        <p class="eyebrow">
+                            YOUR DIGITAL UNIVERSE
+                        </p>
+
+                        <h1 id="pageTitle">
+                            Welcome to Your Universe
+                        </h1>
+
+                        <p id="pageSubtitle">
+                            Semua tugas kuliahmu tersimpan
+                            dalam satu tempat.
+                        </p>
+                    </div>
+
+                    <button id="uploadTopBtn"
+                            class="primary-button">
+                        ＋ Upload File
+                    </button>
+
+                </div>
+
+
+                <!-- SEARCH -->
+                <div class="search-container">
+
+                    <span>⌕</span>
+
+                    <input id="searchInput"
+                           type="search"
+                           placeholder="Cari file atau mata kuliah...">
+
+                    <span class="search-shortcut">SEARCH</span>
+
+                </div>
+
+
+                <!-- STATS -->
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">▣</div>
+                        <div>
+                            <small>MATA KULIAH</small>
+                            <h2 id="subjectCount">0</h2>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">▤</div>
+                        <div>
+                            <small>TOTAL FILE</small>
+                            <h2 id="fileCount">0</h2>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon pink">◈</div>
+                        <div>
+                            <small>TOTAL UKURAN</small>
+                            <h2 id="storageUsed">0 B</h2>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- DASHBOARD -->
+                <section id="homeView" class="content-view">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h2>My Subjects</h2>
+                            <p>Jelajahi folder mata kuliahmu.</p>
+                        </div>
+
+                        <button id="addSubjectBtn"
+                                class="secondary-button">
+                            + Buat Folder
+                        </button>
+
+                    </div>
+
+                    <div id="subjectGrid"
+                         class="subject-grid">
+
+                        <div class="empty-state">
+                            <div>🪐</div>
+                            <h3>Belum ada mata kuliah</h3>
+                            <p>Buat folder pertama untuk memulai.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="section-header file-section-header">
+
+                        <div>
+                            <h2>Recent Files</h2>
+                            <p>File yang terakhir kamu simpan.</p>
+                        </div>
+
+                        <button class="text-button"
+                                data-go="files">
+                            Lihat semua →
+                        </button>
+
+                    </div>
+
+                    <div id="recentFiles"
+                         class="file-list"></div>
+
+                </section>
+
+
+                <!-- SUBJECT VIEW -->
+                <section id="subjectsView"
+                         class="content-view hidden">
+
+                    <div class="section-header">
+                        <div>
+                            <h2>Semua Mata Kuliah</h2>
+                            <p>Kelola seluruh folder perkuliahan.</p>
+                        </div>
+                    </div>
+
+                    <div id="allSubjectGrid"
+                         class="subject-grid"></div>
+
+                </section>
+
+
+                <!-- FILE VIEW -->
+                <section id="filesView"
+                         class="content-view hidden">
+
+                    <div class="section-header">
+                        <div>
+                            <h2 id="fileViewTitle">Semua File</h2>
+                            <p id="fileViewSubtitle">
+                                Semua tugas yang tersimpan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="fileList"
+                         class="file-list"></div>
+
+                </section>
+
+
+                <!-- RECENT VIEW -->
+                <section id="recentView"
+                         class="content-view hidden">
+
+                    <div class="section-header">
+                        <div>
+                            <h2>File Terbaru</h2>
+                            <p>Riwayat file yang terakhir diunggah.</p>
+                        </div>
+                    </div>
+
+                    <div id="recentFullList"
+                         class="file-list"></div>
+
+                </section>
+
+
+                <footer class="footer">
+                    <span>✦ GALAXY STUDY VAULT</span>
+                    <span>Powered by Google Drive API</span>
+                </footer>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- SUBJECT MODAL -->
+    <div id="subjectModal"
+         class="modal hidden">
+
+        <div class="modal-card">
+
+            <button class="modal-close"
+                    data-close="subjectModal">×</button>
+
+            <div class="modal-icon">🪐</div>
+
+            <h2>Buat Mata Kuliah</h2>
+
+            <p>Buat ruang khusus untuk menyimpan tugas.</p>
+
+            <label>Nama Mata Kuliah</label>
+
+            <input id="subjectName"
+                   type="text"
+                   maxlength="80"
+                   placeholder="Contoh: Pemrograman Web">
+
+            <button id="saveSubjectBtn"
+                    class="primary-button full-button">
+                Buat Folder
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- UPLOAD MODAL -->
+    <div id="uploadModal"
+         class="modal hidden">
+
+        <div class="modal-card">
+
+            <button class="modal-close"
+                    data-close="uploadModal">×</button>
+
+            <div class="modal-icon">🚀</div>
+
+            <h2>Upload Tugas</h2>
+
+            <p>Terbangkan file tugasmu ke Galaxy Vault.</p>
+
+            <label>Pilih Mata Kuliah</label>
+
+            <select id="uploadSubject">
+                <option value="">Pilih mata kuliah</option>
+            </select>
+
+            <label>Pilih File</label>
+
+            <input id="fileInput"
+                   type="file"
+                   multiple>
+
+            <div id="selectedFiles"
+                 class="selected-files">
+                Belum ada file dipilih.
+            </div>
+
+            <button id="confirmUploadBtn"
+                    class="primary-button full-button">
+                ↑ Upload ke Google Drive
+            </button>
+
+            <p id="uploadStatus"
+               class="upload-status"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILE PREVIEW MODAL -->
+    <div id="previewModal"
+         class="modal hidden">
+
+        <div class="modal-card preview-card">
+
+            <button class="modal-close"
+                    data-close="previewModal">×</button>
+
+            <div class="modal-icon">📄</div>
+
+            <h2 id="previewName">File</h2>
+
+            <p id="previewInfo"></p>
+
+            <div class="preview-actions">
+
+                <button id="downloadFileBtn"
+                        class="primary-button">
+                    Download
+                </button>
+
+                <button id="openDriveBtn"
+                        class="secondary-button">
+                    Buka Drive
+                </button>
+
+                <button id="deleteFileBtn"
+                        class="danger-button">
+                    Hapus
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+</body>
+</html>
