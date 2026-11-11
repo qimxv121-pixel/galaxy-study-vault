@@ -1,0 +1,42 @@
+body{
+    font-family: Arial;
+    width:90%;
+    margin:0 auto;
+    font-family: Arial;
+    box-sizing: border-box;
+}
+
+.header{
+    text-align: center;
+}
+
+#content{
+    overflow: auto;
+}
+
+#feature, #footer{
+    background-color: #efefef;
+    padding:10px;
+    text-align: center;
+}
+
+.colum1, .colum2, .colum3, .colum4, .colum5, .colum6, .colum7, .colum8, .colum9{
+    background-color: rgba(7, 18, 238, 0.291);
+    width:100%;
+    
+} 
+
+#content h3{
+    text-align: center;
+    overflow: auto;
+}
+
+#feature img{
+    width: 90%;
+    
+}
+
+li{
+    display: inline;
+    padding:10px;
+}
